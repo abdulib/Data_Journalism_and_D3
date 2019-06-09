@@ -144,15 +144,6 @@ d3.csv("data/data.csv", function(err, data) {
     .attr("fill", "turquoise")
     .attr("opacity", ".8");
 
-  // // append state text abbr labels
-  // var stateTextGroup = chartGroup.selectAll(".statetext")
-  //     .data(data)
-  //     .enter()
-  //     .append("text")
-  //     .attr("class", "stateText")
-  //     .attr("x", d => xLinearScale(d[chosenXAxis]))
-  //     .attr("y", d => yLinearScale(d.healthcare))
-  //     .text(d => d.abbr);
 
   // Create group for  2 x- axis labels
   var labelsGroup = chartGroup.append("g")
