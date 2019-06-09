@@ -80,7 +80,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`${d.state}<br>${label} ${d[chosenXAxis]}<br>Healthcare: ${d.healthcare}%`);
+      return (`${d.state}<br>${label} ${d[chosenXAxis]}<br>Healthcare: ${d[chosenYAxis]}%`);
     });
 
   circlesGroup.call(toolTip);
@@ -113,8 +113,7 @@ d3.csv("data/data.csv", function(err, data) {
   // xLinearScale function above csv import
   var xLinearScale = xScale(data, chosenXAxis);
 
-  // var yLinearScale = yScale(data, chosenYAxis);
-1
+
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
     .domain([d3.min(data, d => d.healthcare) -1, d3.max(data, d => d.healthcare) + 1])
@@ -143,7 +142,17 @@ d3.csv("data/data.csv", function(err, data) {
     .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", 8)
     .attr("fill", "turquoise")
-    .attr("opacity", ".5");
+    .attr("opacity", ".8");
+
+  // // append state text abbr labels
+  // var stateTextGroup = chartGroup.selectAll(".statetext")
+  //     .data(data)
+  //     .enter()
+  //     .append("text")
+  //     .attr("class", "stateText")
+  //     .attr("x", d => xLinearScale(d[chosenXAxis]))
+  //     .attr("y", d => yLinearScale(d.healthcare))
+  //     .text(d => d.abbr);
 
   // Create group for  2 x- axis labels
   var labelsGroup = chartGroup.append("g")
